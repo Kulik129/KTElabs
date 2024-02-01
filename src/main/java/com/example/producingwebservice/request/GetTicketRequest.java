@@ -1,23 +1,29 @@
-package com.example.producingwebservice.response;
+package com.example.producingwebservice.request;
 
 
-import com.example.producingwebservice.entity.Country;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "country"
+        "date"
 })
-@XmlRootElement(name = "getCountryResponse")
+@XmlRootElement(namespace = "http://example.com", name = "getCountryRequest")
 @Getter
 @Setter
-public class GetCountryResponse {
-    @XmlElement(required = true)
-    protected Country country;
+@NoArgsConstructor
+public class GetCountryRequest {
+    @XmlElement(namespace = "http://example.com", required = true)
+    private Date date;
 }
+
