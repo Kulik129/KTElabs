@@ -2,13 +2,18 @@ package com.example.producingwebservice.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 @Entity
 @Table(name = "doctors")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,5 +21,12 @@ public class Doctor {
     @Column(nullable = false)
     private UUID uuid;
     @Column(name = "full_name")
-    private String fullNme;
+    private String fullName;
+    @OneToMany(mappedBy = "doctor")
+    private List<Ticket> ticket;
+
+    public Doctor(String fullName) {
+        this.uuid = UUID.randomUUID();
+        this.fullName = fullName;
+    }
 }

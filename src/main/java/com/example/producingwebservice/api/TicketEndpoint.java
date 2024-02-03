@@ -1,8 +1,7 @@
 package com.example.producingwebservice.api;
 
 import com.example.producingwebservice.request.GetTicketRequest;
-import com.example.producingwebservice.services.TicketService;
-import jakarta.validation.Valid;
+import com.example.producingwebservice.services.soap.TicketService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;

@@ -29,11 +29,11 @@ public class Ticket {
     @XmlElement(required = true)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
+    @JoinColumn(name = "doctor_id", referencedColumnName = "id")
     @XmlElement(required = true)
     private Doctor doctor;
     @ManyToOne
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "patient_id", referencedColumnName = "id")
     @XmlElement(required = true)
     private Patient patient;
     @Column(name = "start_time")

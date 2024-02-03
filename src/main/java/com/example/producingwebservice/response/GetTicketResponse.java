@@ -1,7 +1,6 @@
 package com.example.producingwebservice.response;
 
 
-import com.example.producingwebservice.entity.Country;
 import com.example.producingwebservice.entity.Ticket;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -15,10 +14,10 @@ import lombok.Setter;
 @XmlType(name = "", propOrder = {
         "ticket"
 })
-@XmlRootElement(name = "getCountryResponse")
+@XmlRootElement(name = "getTicketResponse")
 @Getter
 @Setter
-public class GetCountryResponse {
+public class GetTicketResponse {
     @XmlElement(required = true)
     protected Ticket ticket;
 }

@@ -1,6 +1,8 @@
-package com.example.producingwebservice.services;
+package com.example.producingwebservice.services.soap;
 
+import com.example.producingwebservice.entity.Patient;
 import com.example.producingwebservice.entity.Ticket;
+import com.example.producingwebservice.repository.PatientRepository;
 import com.example.producingwebservice.repository.TicketRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
