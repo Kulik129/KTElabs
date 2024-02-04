@@ -10,6 +10,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class DoctorRequest {
-    private String fullName;
+public class TicketPatientRequest {
+    private Long ticketId;
+    private Long patientId;
 }
+
