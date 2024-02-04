@@ -1,4 +1,4 @@
-package com.example.producingwebservice;
+package ru.ktelabs.producingwebservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
