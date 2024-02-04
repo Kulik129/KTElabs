@@ -2,7 +2,7 @@ package com.example.producingwebservice.api.rest;
 
 import com.example.producingwebservice.entity.Doctor;
 import com.example.producingwebservice.request.DoctorRequest;
-import com.example.producingwebservice.request.TicketRequest;
+import com.example.producingwebservice.request.TicketDoctorRequest;
 import com.example.producingwebservice.services.rest.DoctorService;
 import com.example.producingwebservice.services.rest.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,9 +28,9 @@ public class DoctorController {
     }
     @PostMapping("/assign")
     @Operation(summary = "Занятие слота по его ID", description = "Занятие слота времени по его ID, слот будет занят врачем")
-    public ResponseEntity<TicketRequest> assignTicketDoctor(@RequestBody TicketRequest ticketRequest) {
-        ticketService.appointTicketDoctor(ticketRequest.getTicketId(), ticketRequest.getDoctorId());
-        return ResponseEntity.ok().body(ticketRequest);
+    public ResponseEntity<TicketDoctorRequest> assignTicketDoctor(@RequestBody TicketDoctorRequest ticketDoctorRequest) {
+        ticketService.appointTicketDoctor(ticketDoctorRequest.getTicketId(), ticketDoctorRequest.getDoctorId());
+        return ResponseEntity.ok().body(ticketDoctorRequest);
     }
 
     @GetMapping

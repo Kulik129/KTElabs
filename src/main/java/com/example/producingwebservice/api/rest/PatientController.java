@@ -3,7 +3,6 @@ package com.example.producingwebservice.api.rest;
 import com.example.producingwebservice.entity.Patient;
 import com.example.producingwebservice.request.PatientRequest;
 import com.example.producingwebservice.request.TicketPatientRequest;
-import com.example.producingwebservice.request.TicketRequest;
 import com.example.producingwebservice.services.rest.PatientService;
 import com.example.producingwebservice.services.rest.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
