@@ -1,12 +1,11 @@
 package com.example.producingwebservice.services.rest;
 
 import com.example.producingwebservice.entity.Doctor;
-import com.example.producingwebservice.entity.Patient;
 import com.example.producingwebservice.repository.DoctorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,14 +19,18 @@ public class DoctorService {
         return doctor;
     }
 
-    public void delete(Long id) {
+    public void deleteDoctorByID(Long id) {
         doctorRepository.deleteById(id);
     }
 
-    public Optional<Doctor> update(Long id,String updatedFullName) {
-        Optional<Doctor> patient = doctorRepository.findById(id);
-        patient.get().setFullName(updatedFullName);
-        doctorRepository.save(patient.get());
-        return patient;
+    public Optional<Doctor> updateDoctor(Long id, String updatedFullName) {
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        doctor.get().setFullName(updatedFullName);
+        doctorRepository.save(doctor.get());
+        return doctor;
+    }
+
+    public List<Doctor> getAllDoctors() {
+        return doctorRepository.findAll();
     }
 }

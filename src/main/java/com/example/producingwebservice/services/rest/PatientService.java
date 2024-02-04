@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,9 +20,7 @@ public class PatientService {
     private final PatientRepository patientRepository;
     private final DoctorRepository doctorRepository;
 
-    public void addPasientToTecket(Long ticketId, Long patientId, Long doctorId) { // переименовать метод
-
-        System.out.println(ticketId + " " + " " + patientId + " " + doctorId);
+    public void appointTicket(Long ticketId, Long patientId, Long doctorId) {
 
         Optional<Ticket> optionalTicket = ticketRepository.findById(ticketId);
         Optional<Patient> optionalPatient = patientRepository.findById(patientId);
@@ -57,4 +56,5 @@ public class PatientService {
         patientRepository.save(patient.get());
         return patient;
     }
+    public List<Patient> getAllPatients() {return patientRepository.findAll();}
 }

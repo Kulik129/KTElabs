@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class Free {
+public class TicketFreeRequest {
     private Long doctorId;
     private Long patientId;
     private Date date;

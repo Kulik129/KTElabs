@@ -13,18 +13,18 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class TicketServiceRest {
+public class TicketService {
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
 
-    public List<Ticket> getDates(Long id) { // rename!!!
+    public List<Ticket> getDates(Long id) {
         Optional<Doctor> doctor = doctorRepository.findById(id);
         List<Ticket> tickets = doctor.get().getTicket();
         return tickets;
     }
 
 
-    public List<Date> simply(Long id) { // delete
+    public List<Date> simply(Long id) {
         Optional<Patient> patient = patientRepository.findById(id);
         List<Ticket> tickets = patient.get().getTicket();
         List<Date> dates = new ArrayList<>();
@@ -34,7 +34,7 @@ public class TicketServiceRest {
         return dates;
     }
 
-    public List<Date> getTicketsByDate(Long id, Date date) {  // rename!!!
+    public List<Date> getTicketsByDate(Long id, Date date) {
         Optional<Doctor> doctor = doctorRepository.findById(id);
 
         return doctor.map(d -> d.getTicket().stream()

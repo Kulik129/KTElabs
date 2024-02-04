@@ -1,4 +1,4 @@
-package com.example.producingwebservice.request;
+package com.example.producingwebservice.request.soap;
 
 
 import jakarta.validation.constraints.Min;

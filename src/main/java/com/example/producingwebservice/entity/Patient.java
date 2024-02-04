@@ -1,5 +1,8 @@
 package com.example.producingwebservice.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlSchemaType;
 import lombok.Getter;
@@ -15,6 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +32,7 @@ public class Patient {
     @XmlSchemaType(name = "string")
     private Date birthDate;
     @OneToMany(mappedBy = "patient")
+    @JsonIgnore
     private List<Ticket> ticket;
 
     public Patient(String fullName, Date birthDate) {
