@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:tns="http://example.com"
-           targetNamespace="http://example.com"
+           xmlns:tns="https://ktelabs.ru"
+           targetNamespace="https://ktelabs.ru"
            elementFormDefault="qualified">
 
-    <!-- Определение элемента для класса Patient -->
     <xs:element name="Patient" type="tns:Patient"/>
 
-    <!-- Определение элемента для класса Ticket -->
     <xs:element name="Ticket" type="tns:Ticket"/>
 
-    <!-- Определение элемента для класса Doctor -->
     <xs:element name="Doctor" type="tns:Doctor"/>
 
-    <!-- Определение типа для класса Patient -->
     <xs:complexType name="Patient">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
@@ -23,7 +19,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Определение типа для класса Ticket -->
     <xs:complexType name="Ticket">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
@@ -33,7 +28,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!-- Определение типа для класса Doctor -->
     <xs:complexType name="Doctor">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
