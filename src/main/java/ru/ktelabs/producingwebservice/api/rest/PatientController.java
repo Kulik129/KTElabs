@@ -26,54 +26,34 @@ public class PatientController {
     @PostMapping
     @Operation(summary = "Занятие слота по его ID", description = "Занятие слота времени по его ID, слот будет занят пациентом")
     public ResponseEntity<TicketPatientRequest> assignTicket(@RequestBody TicketPatientRequest ticketRequest) {
-        try {
-            ticketService.appointTicket(ticketRequest.getTicketId(), ticketRequest.getPatientId());
-            return ResponseEntity.ok().body(ticketRequest);
-        } catch (NotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        ticketService.appointTicket(ticketRequest.getTicketId(), ticketRequest.getPatientId());
+        return ResponseEntity.ok().body(ticketRequest);
     }
 
     @GetMapping
     @Operation(summary = "Список пациентов", description = "Получение списка пациентов из базы данных")
     public ResponseEntity<List<Patient>> getAll() {
-        try {
-            return ResponseEntity.ok().body(patientService.getAllPatients());
-        } catch (UsersNotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        return ResponseEntity.ok().body(patientService.getAllPatients());
     }
 
     @PostMapping("/create")
     @Operation(summary = "Добавление пациента", description = "Создание нового пациента в базе данных")
     public ResponseEntity<PatientRequest> create(@RequestBody PatientRequest request) {
-        try {
-            patientService.createPatient(request.getFullName(), request.getBirthDate());
-            return ResponseEntity.ok().body(request);
-        } catch (NullUserException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
+        patientService.createPatient(request.getFullName(), request.getBirthDate());
+        return ResponseEntity.ok().body(request);
     }
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Удаление пациента", description = "Удаление пациента из базы данных")
     public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
-        try {
-            patientService.deletePatientById(id);
-            return ResponseEntity.ok().build();
-        } catch (NotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        patientService.deletePatientById(id);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновление данных о пациенте", description = "Обновление данных о пациенте в базе данных")
     public ResponseEntity<PatientRequest> updatePatient(@PathVariable Long id, @RequestBody PatientRequest request) {
-        try {
-            patientService.updatePatient(id, request.getBirthDate(), request.getFullName());
-            return ResponseEntity.ok().body(request);
-        } catch (NotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+        patientService.updatePatient(id, request.getBirthDate(), request.getFullName());
+        return ResponseEntity.ok().body(request);
     }
 }
