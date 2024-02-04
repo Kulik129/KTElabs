@@ -2,7 +2,9 @@ package com.example.producingwebservice.api.rest;
 
 import com.example.producingwebservice.entity.Doctor;
 import com.example.producingwebservice.request.DoctorRequest;
+import com.example.producingwebservice.request.TicketRequest;
 import com.example.producingwebservice.services.rest.DoctorService;
+import com.example.producingwebservice.services.rest.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +17,20 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DoctorController {
     private final DoctorService doctorService;
+    private final TicketService ticketService;
+
 
     @PostMapping
     @Operation(summary = "Добавление доктора", description = "Создание нового врача в базе данных")
     public ResponseEntity<DoctorRequest> create(@RequestBody DoctorRequest request) {
         doctorService.createDoctor(request.getFullName());
         return ResponseEntity.ok().body(request);
+    }
+    @PostMapping("/assign")
+    @Operation(summary = "Занятие слота по его ID", description = "Занятие слота времени по его ID, слот будет занят врачем")
+    public ResponseEntity<TicketRequest> assignTicketDoctor(@RequestBody TicketRequest ticketRequest) {
+        ticketService.appointTicketDoctor(ticketRequest.getTicketId(), ticketRequest.getDoctorId());
+        return ResponseEntity.ok().body(ticketRequest);
     }
 
     @GetMapping

@@ -2,8 +2,10 @@ package com.example.producingwebservice.api.rest;
 
 import com.example.producingwebservice.entity.Patient;
 import com.example.producingwebservice.request.PatientRequest;
+import com.example.producingwebservice.request.TicketPatientRequest;
 import com.example.producingwebservice.request.TicketRequest;
 import com.example.producingwebservice.services.rest.PatientService;
+import com.example.producingwebservice.services.rest.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +18,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PatientController {
     private final PatientService patientService;
+    private final TicketService ticketService;
 
     @PostMapping
-    @Operation(summary = "Занятие слота по его ID", description = "Занятие слота времени по его ID, слот будет занят пациентом и врачем")
-    public ResponseEntity<TicketRequest> assignTicket(@RequestBody TicketRequest ticketRequest) {
-        patientService.appointTicket(ticketRequest.getTicketId(), ticketRequest.getPatientId(), ticketRequest.getDoctorId());
+    @Operation(summary = "Занятие слота по его ID", description = "Занятие слота времени по его ID, слот будет занят пациентом")
+    public ResponseEntity<TicketPatientRequest> assignTicket(@RequestBody TicketPatientRequest ticketRequest) {
+        ticketService.appointTicket(ticketRequest.getTicketId(), ticketRequest.getPatientId());
         return ResponseEntity.ok().body(ticketRequest);
     }
 
@@ -40,14 +43,14 @@ public class PatientController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Удаление пациента", description = "Удаление пациента из базы данных")
     public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
-        patientService.delete(id);
+        patientService.deletePatientById(id);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Обновление данных о пациенте", description = "Обновление данных о пациенте в базе данных")
     public ResponseEntity<PatientRequest> updatePatient(@PathVariable Long id, @RequestBody PatientRequest request) {
-        patientService.update(id, request.getBirthDate(), request.getFullName());
+        patientService.updatePatient(id, request.getBirthDate(), request.getFullName());
         System.out.println(request.getFullName());
         System.out.println(request.getBirthDate());
         return ResponseEntity.ok().body(request);
